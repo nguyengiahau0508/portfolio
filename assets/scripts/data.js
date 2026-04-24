@@ -232,14 +232,15 @@
         items: [
           {
             type: "image",
-            title: "Third Prize - Student Programming Contest (11th)",
-            src: "evidence/contests/Ảnh đạt giải ba cuộc thi Lập Trình Sinh Viên Đại Học Thủ Dầu Một lần 11.jpg"
-          },
-          {
-            type: "image",
             title: "Consolation Prize - Information Security Contest (3rd)",
             src: "evidence/contests/Ảnh đạt giải cuộc thi An Toàn Thông Tin Đại Học Thủ Dầu Một lần 3.jpg"
           },
+          {
+            type: "image",
+            title: "Third Prize - Student Programming Contest (11th)",
+            src: "evidence/contests/Ảnh đạt giải ba cuộc thi Lập Trình Sinh Viên Đại Học Thủ Dầu Một lần 11.jpg"
+          },
+
           {
             type: "image",
             title: "Consolation Prize Certificate - Student Programming Contest (10th)",
@@ -255,15 +256,16 @@
             title: "Consolation Prize - Student Programming Contest (9th)",
             src: "evidence/contests/Ảnh đạt giải khuyến khích cuộc thi Lập Trình Sinh Viên Đại Học Thủ Dầu Một lần 9.jpg"
           },
-          {
-            type: "image",
-            title: "ICPC National 2024 Participation",
-            src: "evidence/contests/Ảnh tham gia cuộc thi ICPC NATIONAL 2024.jpg"
-          },
+          ,
           {
             type: "image",
             title: "ICPC National 2025 Participation",
             src: "evidence/contests/Ảnh tham gia cuộc thi ICPC NATIONAL 2025.jpg"
+          },
+          {
+            type: "image",
+            title: "ICPC National 2024 Participation",
+            src: "evidence/contests/Ảnh tham gia cuộc thi ICPC NATIONAL 2024.jpg"
           }
         ]
       },
