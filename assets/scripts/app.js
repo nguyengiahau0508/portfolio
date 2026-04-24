@@ -105,6 +105,7 @@
 
       return (
         '<article class="project-card card reveal">' +
+        mediaSectionHtml +
         '<div class="project-head">' +
         '<p class="project-seq">PROJECT ' +
         toTwoDigits(index) +
@@ -123,7 +124,6 @@
         '<div class="tag-list">' +
         joinTags(project.stack, "tag-secondary") +
         "</div>" +
-        mediaSectionHtml +
         '<ul class="bullet-list">' +
         project.highlights
           .map(function (highlight) {
