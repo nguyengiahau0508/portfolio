@@ -909,6 +909,14 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .hero-side {
+    order: -1;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
   .hero-panel {
     min-height: 0;
   }
@@ -962,6 +970,14 @@ h3 {
     width: calc(100% - 20px);
     margin-top: 20px;
     margin-bottom: 52px;
+  }
+
+  .hero-side {
+    order: -1;
+  }
+
+  .hero-copy {
+    order: 1;
   }
 
   .hero-copy,
