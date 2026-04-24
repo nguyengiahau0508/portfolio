@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="880" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#143D5A"/>
+      <stop offset="1" stop-color="#1F5B82"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="180" y1="140" x2="760" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EE"/>
+      <stop offset="1" stop-color="#F9EEDD"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="250" y1="190" x2="660" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9822B"/>
+      <stop offset="1" stop-color="#F4B169"/>
+    </linearGradient>
+    <filter id="shadow" x="140" y="105" width="700" height="540" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#0E2940" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="720" rx="36" fill="url(#bg)"/>
+  <circle cx="128" cy="88" r="96" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="838" cy="616" r="132" fill="#FFFFFF" fill-opacity="0.07"/>
+
+  <g filter="url(#shadow)">
+    <rect x="190" y="130" width="580" height="480" rx="20" fill="url(#paper)"/>
+  </g>
+
+  <rect x="250" y="178" width="416" height="26" rx="12" fill="url(#accent)"/>
+  <rect x="250" y="232" width="460" height="13" rx="6.5" fill="#C7C8C5"/>
+  <rect x="250" y="262" width="438" height="13" rx="6.5" fill="#D4D4D0"/>
+  <rect x="250" y="292" width="420" height="13" rx="6.5" fill="#DAD8D2"/>
+  <rect x="250" y="336" width="210" height="13" rx="6.5" fill="#D0D0CB"/>
+
+  <rect x="250" y="396" width="228" height="112" rx="12" fill="#153E5C" fill-opacity="0.12"/>
+  <rect x="496" y="396" width="214" height="20" rx="8" fill="#BBC1C7"/>
+  <rect x="496" y="428" width="196" height="14" rx="7" fill="#C7CCD1"/>
+  <rect x="496" y="452" width="184" height="14" rx="7" fill="#D4D8DC"/>
+  <rect x="496" y="476" width="140" height="14" rx="7" fill="#DBDEE1"/>
+
+  <circle cx="704" cy="175" r="46" fill="#153E5C"/>
+  <path d="M684 175L699 190L726 162" stroke="#FFF7EC" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="250" y="560" fill="#153E5C" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Faculty-level Scientific Paper</text>
+</svg>
