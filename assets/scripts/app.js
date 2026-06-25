@@ -25,6 +25,10 @@
 
   const experienceHtml = data.experience
     .map(function (item, index) {
+      const logoHtml = item.logo
+        ? '<img class="timeline-logo" src="' + pathToUrl(item.logo) + '" alt="' + item.company + ' logo" />'
+        : "";
+
       return (
         '<article class="timeline-item card reveal">' +
         '<p class="timeline-count">EXP ' +
@@ -33,12 +37,17 @@
         '<p class="timeline-period">' +
         item.period +
         "</p>" +
+        '<div class="timeline-header">' +
+        logoHtml +
+        '<div>' +
         '<h3 class="timeline-role">' +
         item.role +
         "</h3>" +
         '<p class="timeline-company">' +
         item.company +
         "</p>" +
+        "</div>" +
+        "</div>" +
         '<ul class="bullet-list">' +
         item.bullets
           .map(function (bullet) {
@@ -51,93 +60,116 @@
     })
     .join("");
 
-  const projectHtml = data.projects
-    .map(function (project, index) {
-      const mediaHtml = project.media
-        .map(function (media) {
-          return (
-            '<a class="project-image-link" href="' +
-            pathToUrl(media.src) +
-            '" target="_blank" rel="noreferrer">' +
-            '<img loading="lazy" src="' +
-            pathToUrl(media.src) +
-            '" alt="' +
-            media.alt +
-            '" />' +
-            "</a>"
-          );
-        })
-        .join("");
+  const renderProjects = function (projectList, startIndex) {
+    return projectList
+      .map(function (project, index) {
+        const actualIndex = startIndex + index;
+        const mediaHtml = project.media
+          .map(function (media) {
+            return (
+              '<a class="project-image-link" href="' +
+              pathToUrl(media.src) +
+              '" target="_blank" rel="noreferrer">' +
+              '<img loading="lazy" src="' +
+              pathToUrl(media.src) +
+              '" alt="' +
+              media.alt +
+              '" />' +
+              "</a>"
+            );
+          })
+          .join("");
 
-      const mediaSectionHtml = mediaHtml
-        ? '<div class="project-media">' + mediaHtml + "</div>"
-        : '<div class="project-media project-media-empty">' +
-          '<div class="project-media-placeholder">' +
-          "<p>No preview image</p>" +
-          "<span>See repository and documentation for architecture and workflows.</span>" +
-          "</div>" +
+        const mediaSectionHtml = mediaHtml
+          ? '<div class="project-media">' + mediaHtml + "</div>"
+          : '<div class="project-media project-media-empty">' +
+            '<div class="project-media-placeholder">' +
+            "<p>No preview image</p>" +
+            "<span>See repository and documentation for architecture and workflows.</span>" +
+            "</div>" +
+            "</div>";
+
+        const isCompany = project.type === "Company Project";
+        const highlightMetaLabel = isCompany ? "Tasks" : "Highlights";
+
+        const projectMetaHtml =
+          '<div class="project-meta">' +
+          '<span class="project-meta-item"><strong>' +
+          String(project.stack.length) +
+          "</strong> Tech</span>" +
+          '<span class="project-meta-item"><strong>' +
+          String(project.highlights.length) +
+          "</strong> " + highlightMetaLabel + "</span>" +
+          '<span class="project-meta-item"><strong>' +
+          String(project.links.length) +
+          "</strong> Links</span>" +
           "</div>";
 
-      const projectMetaHtml =
-        '<div class="project-meta">' +
-        '<span class="project-meta-item"><strong>' +
-        String(project.stack.length) +
-        "</strong> Tech</span>" +
-        '<span class="project-meta-item"><strong>' +
-        String(project.highlights.length) +
-        "</strong> Highlights</span>" +
-        '<span class="project-meta-item"><strong>' +
-        String(project.links.length) +
-        "</strong> Links</span>" +
-        "</div>";
-
-      const projectLinks = project.links
-        .map(function (link) {
-          return (
-            '<a class="text-link project-link" href="' +
-            link.href +
-            '" target="_blank" rel="noreferrer">' +
-            link.label +
-            "</a>"
-          );
-        })
-        .join("");
-
-      return (
-        '<article class="project-card card reveal">' +
-        mediaSectionHtml +
-        '<div class="project-head">' +
-        '<p class="project-seq">PROJECT ' +
-        toTwoDigits(index) +
-        "</p>" +
-        '<p class="project-period-badge">' +
-        project.period +
-        "</p>" +
-        "</div>" +
-        '<h3 class="project-name">' +
-        project.name +
-        "</h3>" +
-        '<p class="project-description">' +
-        project.description +
-        "</p>" +
-        projectMetaHtml +
-        '<div class="tag-list">' +
-        joinTags(project.stack, "tag-secondary") +
-        "</div>" +
-        '<ul class="bullet-list">' +
-        project.highlights
-          .map(function (highlight) {
-            return "<li>" + highlight + "</li>";
+        const projectLinks = project.links
+          .map(function (link) {
+            return (
+              '<a class="text-link project-link" href="' +
+              link.href +
+              '" target="_blank" rel="noreferrer">' +
+              link.label +
+              "</a>"
+            );
           })
-          .join("") +
-        "</ul>" +
-        '<div class="project-links">' +
-        projectLinks +
-        "</div>" +
-        "</article>"
-      );
-    })
-    .join("");
+          .join("");
+
+        const projectLogoHtml = project.logo
+          ? '<img class="project-logo" src="' + pathToUrl(project.logo) + '" alt="' + project.name + ' logo" />'
+          : "";
+
+        const projectTypeLabel = project.type ? project.type.toUpperCase() : 'PROJECT ' + toTwoDigits(actualIndex);
+        const listTitle = project.type === "Company Project" ? "My Responsibilities:" : "Key Highlights:";
+        const roleHtml = project.role ? '<p class="project-role-text"><strong>Role:</strong> ' + project.role + '</p>' : '';
+
+        return (
+          '<article class="project-card card reveal">' +
+          mediaSectionHtml +
+          '<div class="project-head">' +
+          '<p class="project-seq">' + projectTypeLabel + '</p>' +
+          '<p class="project-period-badge">' +
+          project.period +
+          "</p>" +
+          "</div>" +
+          '<div class="project-title-wrap">' +
+          projectLogoHtml +
+          '<h3 class="project-name">' +
+          project.name +
+          "</h3>" +
+          '</div>' +
+          roleHtml +
+          '<p class="project-description">' +
+          project.description +
+          "</p>" +
+          projectMetaHtml +
+          '<div class="tag-list">' +
+          joinTags(project.stack, "tag-secondary") +
+          "</div>" +
+          '<p class="project-list-title">' + listTitle + '</p>' +
+          '<ul class="bullet-list">' +
+          project.highlights
+            .map(function (highlight) {
+              return "<li>" + highlight + "</li>";
+            })
+            .join("") +
+          "</ul>" +
+          '<div class="project-links">' +
+          projectLinks +
+          "</div>" +
+          "</article>"
+        );
+      })
+      .join("");
+  };
+
+  const companyProjects = data.projects.filter(function (p) { return p.type === "Company Project"; });
+  const personalProjects = data.projects.filter(function (p) { return p.type !== "Company Project"; });
+
+  const companyProjectHtml = renderProjects(companyProjects, 0);
+  const personalProjectHtml = renderProjects(personalProjects, companyProjects.length);
 
   const educationHtml = data.education
     .map(function (item) {
@@ -293,13 +325,23 @@
     "</div>" +
     "</section>" +
     '<section id="projects" class="section">' +
+    (companyProjects.length > 0 ?
+      '<div class="section-heading reveal">' +
+      '<p class="section-kicker">Industry</p>' +
+      "<h2>Work Projects</h2>" +
+      "<p>Projects developed during professional work and internships.</p>" +
+      "</div>" +
+      '<div class="project-grid" style="margin-bottom: 48px;">' +
+      companyProjectHtml +
+      "</div>"
+    : "") +
     '<div class="section-heading reveal">' +
     '<p class="section-kicker">Build</p>' +
     "<h2>Personal Projects</h2>" +
     "<p>Selected products with real implementation output and demo evidence.</p>" +
     "</div>" +
     '<div class="project-grid">' +
-    projectHtml +
+    personalProjectHtml +
     "</div>" +
     "</section>" +
     '<section id="education" class="section">' +

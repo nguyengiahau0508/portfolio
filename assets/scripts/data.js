@@ -2,7 +2,7 @@
   window.PORTFOLIO_DATA = {
     profile: {
       fullName: "NGUYEN GIA HAU",
-      title: "Software Developer Internship Candidate",
+      title: "Fresher Software Developer",
       avatarSrc: "assets/images/avatar.jpg",
       avatarAlt: "Nguyen Gia Hau avatar",
       phone: "0346269996",
@@ -13,7 +13,7 @@
       githubHref: "https://github.com/nguyengiahau0508",
       location: "574/45 Le Hong Phong, Phu Hoa, Thu Dau Mot, Binh Duong, Ho Chi Minh",
       objective:
-        "Final-year Information Technology student seeking an internship opportunity in software development. Eager to contribute to real-world products and grow through the full software development lifecycle in a professional team.",
+        "Final-year Information Technology student seeking a Fresher Software Developer position. Passionate about backend and full-stack development, with hands-on experience in Angular, NestJS, and MariaDB. Eager to contribute to real-world projects while continuously improving technical and problem-solving skills.",
       cvFile: "NGUYEN GIA HAU - SOFTWARE DEVELOPER INTERNSHIP - EN.pdf"
     },
 
@@ -31,36 +31,66 @@
 
     experience: [
       {
-        period: "2023 - Present (~3 years)",
-        company: "MindX Technology School",
-        role: "Programming Instructor (Part-time)",
+        period: "2026 (3 Months)",
+        company: "CIT Software",
+        logo: "assets/images/logo/cit-logo.jpg",
+        role: "Backend Developer Intern",
         bullets: [
-          "Delivered structured programming courses (Scratch, Python, Web basics) for primary to high-school students.",
-          "Designed hands-on lessons and guided mini-projects to build logical thinking and problem-solving skills.",
-          "Evaluated student performance and prepared detailed feedback reports for parents.",
-          "Participated in grading and standardizing assessments across classes.",
-          "Conducted trial classes and onboarding sessions for new students."
+          "Developed backend services using NestJS and CMS features using React.",
+          "Implemented new features, fixed bugs, and maintained existing systems.",
+          "Collaborated with team members in an Agile development environment.",
+          "Worked with RESTful APIs, databases, and Git version control."
         ]
       },
       {
-        period: "2024 - Present (~2 years)",
-        company: "Thu Dau Mot University",
-        role: "Scientific Research (Web Development)",
+        period: "2023 - Present (~3 years)",
+        company: "MindX Technology School",
+        logo: "assets/images/logo/mindx-logo.png",
+        role: "Programming Instructor (Part-time)",
         bullets: [
-          "Contributed to university web projects in both frontend and backend roles.",
-          "Implemented features with Angular and NestJS; supported debugging, testing, and optimization.",
-          "Collaborated in a structured team workflow with regular technical evaluation.",
-          "Gained end-to-end product development experience from implementation to validation."
+          "Taught Scratch, Python, and Web Development courses to students.",
+          "Designed hands-on lessons and guided coding projects.",
+          "Evaluated student progress and provided learning support."
         ]
       }
     ],
 
     projects: [
       {
-        name: "CodeRank - Algorithm Practice and Online Learning Platform",
+        name: "Bạn Say Tôi Lái (You Drink, I Drive)",
+        type: "Company Project",
+        role: "Backend Developer Intern",
+        period: "2026 (3 Months)",
+        description:
+          "A multi-service mobility platform providing on-demand ride-hailing, driver matching, and flexible self-driving vehicle rentals.",
+        stack: [
+          "NestJS",
+          "React",
+          "VNPAY API",
+          "MariaDB",
+          "Git"
+        ],
+        highlights: [
+          "Developed RESTful APIs for the self-driving car rental module, enabling users to search, book, and manage vehicle rentals.",
+          "Integrated VNPAY payment gateway APIs to handle transactions across various modules, including ride bookings, discount code purchases, and driver security deposits.",
+          "Built a secure wallet and fund withdrawal module for drivers.",
+          "Implemented a dynamic Role-Based Access Control (RBAC) system for both the backend API and the Admin CMS.",
+          "Collaborated with the QA team to troubleshoot and fix reported bugs, ensuring system stability."
+        ],
+        logo: "assets/images/projects/bansaytoilai/bansaytoilai_logo.png",
+        media: [
+          {
+            src: "assets/images/projects/bansaytoilai/preview.jpg",
+            alt: "Bạn Say Tôi Lái system preview"
+          }
+        ],
+        links: []
+      },
+      {
+        name: "CodeRank - AI-powered Programming Learning Platform",
         period: "2024 - 2025",
         description:
-          "CodeRank is an integrated edtech platform for algorithm practice, structured courses, coding contests, and an AI assistant for solving, debugging, and learning guidance.",
+          "Developed a programming learning platform with courses and coding exercises (C++, Python).",
         stack: [
           "Angular 21",
           "PrimeNG 21",
@@ -74,12 +104,10 @@
           "JWT + OAuth"
         ],
         highlights: [
-          "Designed a three-service architecture: coderank-client (Angular), coderank-api (NestJS), and coderank-agent (Express + LLM), connected to MariaDB.",
-          "Implemented role-based capabilities for Student, Instructor, Admin, and Problem Setter workflows.",
-          "Built programming problem modules with multi-language execution support (Python, C++, Java, JavaScript, TypeScript, C, Go, Rust), auto test cases, and hint levels.",
-          "Delivered course and contest systems with progress tracking, registration flow, and leaderboard features.",
-          "Developed an AI assistant with agentic loop and tool calling, supporting Gemini, Ollama, and Groq providers.",
-          "Applied security controls including JWT + OAuth authentication, RBAC, Firejail sandbox isolation, CSRF protection, rate limiting, and XSS prevention."
+          "Built an automated submission and grading system.",
+          "Integrated AI-based chatbot to assist users in solving problems, analyzing errors, and improving learning efficiency.",
+          "Achieved 95/100 score, ranked Top 2 in faculty.",
+          "Resulted in 1 scientific publication presented at faculty-level conference."
         ],
         media: [
           {
@@ -219,10 +247,11 @@
     ],
 
     achievements: [
-      "Student Programming Contest (Thu Dau Mot University): 9th - Consolation Prize, 10th - Consolation Prize, 11th - Third Prize.",
-      "Information Security Contest (Thu Dau Mot University): 3rd - Consolation Prize.",
-      "Scientific Research: 2024 - 3 projects scored above 80; 2025 - 1 project scored 95.",
-      "Scientific Publication (2025): 1 paper published at faculty-level conference."
+      "3rd Prize, 11th Student Programming Contest (Thu Dau Mot University)",
+      "Consolation Prize, 9th & 10th Student Programming Contest (Thu Dau Mot University)",
+      "Consolation Prize, 3rd Information Security Contest (Thu Dau Mot University)",
+      "Completed 5 scientific research projects, including one project scoring 95/100",
+      "Published 1 faculty-level scientific paper (2025)"
     ],
 
     evidenceCategories: [
