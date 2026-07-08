@@ -14,7 +14,7 @@
       location: "574/45 Le Hong Phong, Phu Hoa, Thu Dau Mot, Binh Duong, Ho Chi Minh",
       objective:
         "Final-year Information Technology student seeking a Fresher Software Developer position. Passionate about backend and full-stack development, with hands-on experience in Angular, NestJS, and MariaDB. Eager to contribute to real-world projects while continuously improving technical and problem-solving skills.",
-      cvFile: "NGUYEN GIA HAU - SOFTWARE DEVELOPER INTERNSHIP - EN.pdf"
+      cvFile: "NGUYEN GIA HAU – FRESHER SOFTWARE DEVELOPER - EN.docx.pdf"
     },
 
     quickStats: [
