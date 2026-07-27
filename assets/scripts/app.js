@@ -82,12 +82,7 @@
 
         const mediaSectionHtml = mediaHtml
           ? '<div class="project-media">' + mediaHtml + "</div>"
-          : '<div class="project-media project-media-empty">' +
-            '<div class="project-media-placeholder">' +
-            "<p>No preview image</p>" +
-            "<span>See repository and documentation for architecture and workflows.</span>" +
-            "</div>" +
-            "</div>";
+          : "";
 
         const isCompany = project.type === "Company Project";
         const highlightMetaLabel = isCompany ? "Tasks" : "Highlights";
@@ -105,17 +100,21 @@
           "</strong> Links</span>" +
           "</div>";
 
-        const projectLinks = project.links
-          .map(function (link) {
-            return (
-              '<a class="text-link project-link" href="' +
-              link.href +
-              '" target="_blank" rel="noreferrer">' +
-              link.label +
-              "</a>"
-            );
-          })
-          .join("");
+        const projectLinksHtml = project.links.length > 0
+          ? '<div class="project-links">' +
+            project.links
+              .map(function (link) {
+                return (
+                  '<a class="text-link project-link" href="' +
+                  link.href +
+                  '" target="_blank" rel="noreferrer">' +
+                  link.label +
+                  "</a>"
+                );
+              })
+              .join("") +
+            "</div>"
+          : "";
 
         const projectLogoHtml = project.logo
           ? '<img class="project-logo" src="' + pathToUrl(project.logo) + '" alt="' + project.name + ' logo" />'
@@ -124,6 +123,14 @@
         const projectTypeLabel = project.type ? project.type.toUpperCase() : 'PROJECT ' + toTwoDigits(actualIndex);
         const listTitle = project.type === "Company Project" ? "My Responsibilities:" : "Key Highlights:";
         const roleHtml = project.role ? '<p class="project-role-text"><strong>Role:</strong> ' + project.role + '</p>' : '';
+
+        const projectIndex = data.projects.indexOf(project);
+        const detailsButtonHtml =
+          '<div class="project-card-footer">' +
+          '<button class="details-toggle btn-open-modal" data-project-index="' + String(projectIndex) + '">' +
+          'View Details (' + String(project.highlights.length) + ' ' + (isCompany ? 'Tasks' : 'Highlights') + ') ↗' +
+          '</button>' +
+          '</div>';
 
         return (
           '<article class="project-card card reveal">' +
@@ -148,17 +155,8 @@
           '<div class="tag-list">' +
           joinTags(project.stack, "tag-secondary") +
           "</div>" +
-          '<p class="project-list-title">' + listTitle + '</p>' +
-          '<ul class="bullet-list">' +
-          project.highlights
-            .map(function (highlight) {
-              return "<li>" + highlight + "</li>";
-            })
-            .join("") +
-          "</ul>" +
-          '<div class="project-links">' +
-          projectLinks +
-          "</div>" +
+          projectLinksHtml +
+          detailsButtonHtml +
           "</article>"
         );
       })
@@ -197,6 +195,19 @@
       return "<li>" + item + "</li>";
     })
     .join("");
+
+  const languagesHtml = data.skills && data.skills.languages
+    ? '<article class="card reveal">' +
+      "<h3>Languages</h3>" +
+      '<ul class="bullet-list">' +
+      data.skills.languages
+        .map(function (item) {
+          return "<li>" + item + "</li>";
+        })
+        .join("") +
+      "</ul>" +
+      "</article>"
+    : "";
 
   const avatarHtml = data.profile.avatarSrc
     ? '<a class="hero-avatar-link" href="' +
@@ -287,7 +298,7 @@
     '<section id="snapshot" class="section reveal">' +
     '<aside class="hero-panel quick-snapshot card">' +
     '<p class="panel-title">Quick Snapshot</p>' +
-    '<p class="panel-subtitle">Software Developer Intern</p>' +
+    '<p class="panel-subtitle">' + data.profile.title + '</p>' +
     '<ul class="stat-list">' +
     snapshotStatsHtml +
     "</ul>" +
@@ -329,7 +340,7 @@
       '<div class="section-heading reveal">' +
       '<p class="section-kicker">Industry</p>' +
       "<h2>Work Projects</h2>" +
-      "<p>Projects developed during professional work and internships.</p>" +
+      "<p>Projects developed during professional work experience.</p>" +
       "</div>" +
       '<div class="project-grid" style="margin-bottom: 48px;">' +
       companyProjectHtml +
@@ -353,6 +364,7 @@
     '<div class="edu-achievement-grid">' +
     '<div class="education-block">' +
     educationHtml +
+    languagesHtml +
     "</div>" +
     '<article class="card reveal">' +
     "<h3>Achievements</h3>" +
@@ -374,7 +386,7 @@
     '<section id="contact" class="section contact-section reveal">' +
     '<article class="card contact-card">' +
     "<h2>Let us build something useful</h2>" +
-    "<p>I am actively looking for internship opportunities in software development and ready to contribute to product teams.</p>" +
+    "<p>I am actively seeking a Fresher Backend Developer position and ready to contribute to building scalable, maintainable software in product teams.</p>" +
     '<div class="contact-links">' +
     '<a class="btn btn-primary" href="' +
     data.profile.emailHref +
@@ -388,7 +400,7 @@
     '<footer class="site-footer">' +
     '<p>© <span id="currentYear"></span> ' +
     data.profile.fullName +
-    ". Built for internship applications.</p>" +
+    ". Built for software developer applications.</p>" +
     "</footer>";
 
   const flattenedEvidence = data.evidenceCategories.reduce(function (acc, category) {
@@ -553,4 +565,112 @@
   });
 
   document.getElementById("currentYear").textContent = String(new Date().getFullYear());
+
+  /* --- Project Popup Modal Controller --- */
+  const modalOverlay = document.getElementById("project-modal");
+  const modalContent = document.getElementById("modal-content");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+  const closeProjectModal = function () {
+    if (modalOverlay) {
+      modalOverlay.classList.remove("is-active");
+      modalOverlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+  };
+
+  if (modalOverlay && modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", closeProjectModal);
+    modalOverlay.addEventListener("click", function (e) {
+      if (e.target === modalOverlay) {
+        closeProjectModal();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modalOverlay.classList.contains("is-active")) {
+        closeProjectModal();
+      }
+    });
+  }
+
+  const openProjectModal = function (project) {
+    if (!modalContent || !modalOverlay) return;
+
+    const mediaHtml = project.media && project.media.length > 0
+      ? '<div class="modal-media-wrap">' +
+        project.media
+          .map(function (m) {
+            return '<img class="modal-media-img" src="' + pathToUrl(m.src) + '" alt="' + m.alt + '" />';
+          })
+          .join("") +
+        "</div>"
+      : "";
+
+    const logoHtml = project.logo
+      ? '<img class="project-logo modal-logo" src="' + pathToUrl(project.logo) + '" alt="' + project.name + ' logo" />'
+      : "";
+
+    const roleHtml = project.role
+      ? '<p class="project-role-text modal-role"><strong>Role:</strong> ' + project.role + "</p>"
+      : "";
+    const listTitle = project.type === "Company Project" ? "Key Responsibilities & Tasks:" : "Key Highlights & Features:";
+
+    const linksHtml = project.links && project.links.length > 0
+      ? '<div class="project-links modal-links">' +
+        project.links
+          .map(function (link) {
+            return (
+              '<a class="text-link project-link" href="' + link.href + '" target="_blank" rel="noreferrer">' + link.label + " ↗</a>"
+            );
+          })
+          .join("") +
+        "</div>"
+      : "";
+
+    modalContent.innerHTML =
+      mediaHtml +
+      '<div class="modal-header-wrap">' +
+      '<div class="modal-title-row">' +
+      logoHtml +
+      "<div>" +
+      '<div class="modal-badges">' +
+      '<span class="eyebrow">' + (project.type || "Personal Project") + "</span>" +
+      '<span class="project-period-badge">' + project.period + "</span>" +
+      "</div>" +
+      '<h2 class="modal-project-title">' + project.name + "</h2>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      roleHtml +
+      '<p class="modal-desc">' + project.description + "</p>" +
+      '<div class="tag-list modal-tags">' +
+      joinTags(project.stack, "tag-secondary") +
+      "</div>" +
+      linksHtml +
+      '<div class="modal-highlights-section">' +
+      '<h3 class="modal-highlights-title">' + listTitle + "</h3>" +
+      '<ul class="bullet-list modal-bullet-list">' +
+      (project.highlights || [])
+        .map(function (item) {
+          return "<li>" + item + "</li>";
+        })
+        .join("") +
+      "</ul>" +
+      "</div>";
+
+    modalOverlay.classList.add("is-active");
+    modalOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".btn-open-modal");
+    if (btn) {
+      const idx = parseInt(btn.getAttribute("data-project-index"), 10);
+      const project = data.projects[idx];
+      if (project) {
+        openProjectModal(project);
+      }
+    }
+  });
 })();

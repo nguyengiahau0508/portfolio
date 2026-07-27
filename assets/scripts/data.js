@@ -11,35 +11,51 @@
       emailHref: "mailto:nguyengiahau2004@gmail.com",
       githubLabel: "github.com/nguyengiahau0508",
       githubHref: "https://github.com/nguyengiahau0508",
-      location: "574/45 Le Hong Phong, Phu Hoa, Thu Dau Mot, Binh Duong, Ho Chi Minh",
+      location: "Thu Dau Mot, Binh Duong, Ho Chi Minh",
       objective:
-        "Final-year Information Technology student seeking a Fresher Software Developer position. Passionate about backend and full-stack development, with hands-on experience in Angular, NestJS, and MariaDB. Eager to contribute to real-world projects while continuously improving technical and problem-solving skills.",
+        "Information Technology graduate with practical experience developing enterprise backend systems using NestJS, TypeScript, and MariaDB/MySQL. Experienced in designing RESTful APIs, implementing authentication and authorization, integrating third-party payment services, and developing large-scale business modules. Seeking a Fresher Backend Developer position where I can contribute to building scalable, maintainable software while continuously enhancing my backend development expertise and growing as a software engineer.",
       cvFile: "NGUYEN GIA HAU – FRESHER SOFTWARE DEVELOPER - EN.docx.pdf"
     },
 
     quickStats: [
       { label: "GPA", value: "3.2 / 4.0" },
-      { label: "Teaching", value: "~3 years at MindX" },
-      { label: "Research", value: "4 projects scored 80+" },
+      { label: "Experience", value: "6 Months at CIT Software" },
+      { label: "Research", value: "5 Scientific Projects" },
       { label: "Highlight", value: "Coderank Top 2 | 95/100" }
     ],
 
     skills: {
       core: ["Angular", "NestJS", "MariaDB"],
-      familiar: ["Linux", "Docker", "Nginx", "AWS", "Git", "Redis", "OAuth2"]
+      familiar: [
+        "Linux",
+        "Git",
+        "TypeScript",
+        "TypeORM",
+        "MySQL",
+        "Redis",
+        "Docker",
+        "VNPAY",
+        "FCM",
+        "AWS",
+        "OAuth2"
+      ],
+      languages: [
+        "English — Reading technical documentation and basic communication"
+      ]
     },
 
     experience: [
       {
-        period: "2026 (3 Months)",
+        period: "2026 (6 Months)",
         company: "CIT Software",
         logo: "assets/images/logo/cit-logo.jpg",
-        role: "Backend Developer Intern",
+        role: "Backend Developer Fresher",
         bullets: [
-          "Developed backend services using NestJS and CMS features using React.",
-          "Implemented new features, fixed bugs, and maintained existing systems.",
-          "Collaborated with team members in an Agile development environment.",
-          "Worked with RESTful APIs, databases, and Git version control."
+          "Developed backend services using NestJS and TypeScript.",
+          "Built and maintained RESTful APIs for enterprise applications.",
+          "Developed CMS features using React.",
+          "Fixed bugs, optimized existing features, and participated in code reviews.",
+          "Collaborated with frontend and mobile developers in an Agile environment."
         ]
       },
       {
@@ -57,31 +73,67 @@
 
     projects: [
       {
-        name: "Bạn Say Tôi Lái (You Drink, I Drive)",
+        name: "Self-Drive Car Rental System",
         type: "Company Project",
-        role: "Backend Developer Intern",
-        period: "2026 (3 Months)",
+        role: "Backend Developer Fresher",
+        period: "2025 - 2026",
         description:
-          "A multi-service mobility platform providing on-demand ride-hailing, driver matching, and flexible self-driving vehicle rentals.",
+          "An enterprise car rental mobility platform with role-based access control, electronic contracts, and online payment gateway integration.",
         stack: [
-          "NestJS",
           "React",
-          "VNPAY API",
-          "MariaDB",
-          "Git"
+          "NestJS",
+          "TypeScript",
+          "TypeORM",
+          "MySQL",
+          "Redis",
+          "VNPAY",
+          "MobiFone eContract"
         ],
         highlights: [
-          "Developed RESTful APIs for the self-driving car rental module, enabling users to search, book, and manage vehicle rentals.",
-          "Integrated VNPAY payment gateway APIs to handle transactions across various modules, including ride bookings, discount code purchases, and driver security deposits.",
-          "Built a secure wallet and fund withdrawal module for drivers.",
-          "Implemented a dynamic Role-Based Access Control (RBAC) system for both the backend API and the Admin CMS.",
-          "Collaborated with the QA team to troubleshoot and fix reported bugs, ensuring system stability."
+          "Developed the Self-Drive Car Rental module.",
+          "Integrated the MobiFone Electronic Contract service.",
+          "Integrated the VNPAY payment gateway.",
+          "Developed the Role-Based Access Control (RBAC) system.",
+          "Supported the Mobile team with API integration."
         ],
         logo: "assets/images/projects/bansaytoilai/bansaytoilai_logo.png",
         media: [
           {
             src: "assets/images/projects/bansaytoilai/preview.jpg",
-            alt: "Bạn Say Tôi Lái system preview"
+            alt: "Self-Drive Car Rental System preview"
+          }
+        ],
+        links: []
+      },
+      {
+        name: "Vehicle Dispatch Management System",
+        type: "Company Project",
+        role: "Backend Developer Fresher",
+        period: "2025 - 2026",
+        description:
+          "An enterprise system for vehicle dispatch and trip management, supporting drivers and employees with real-time tracking and push notifications.",
+        stack: [
+          "NestJS",
+          "TypeScript",
+          "TypeORM",
+          "MySQL",
+          "Redis",
+          "Docker",
+          "Firebase Cloud Messaging (FCM)"
+        ],
+        highlights: [
+          "Developed authentication features for drivers and employees.",
+          "Developed driver and employee profile management features.",
+          "Built a notification system for drivers and employees using Firebase Cloud Messaging (FCM).",
+          "Developed the Trip Management module, the core feature of the system.",
+          "Assisted the team lead in reviewing team members' code.",
+          "Supported the Mobile team with API integration and optimization."
+        ],
+        logo: "assets/images/logo/cit-logo.jpg",
+        media: [
+          {
+            src: "assets/images/projects/misumi/misumi-preview.png",
+            alt: "Vehicle Dispatch Management System preview"
           }
         ],
         links: []
@@ -247,11 +299,11 @@
     ],
 
     achievements: [
-      "3rd Prize, 11th Student Programming Contest (Thu Dau Mot University)",
-      "Consolation Prize, 9th & 10th Student Programming Contest (Thu Dau Mot University)",
-      "Consolation Prize, 3rd Information Security Contest (Thu Dau Mot University)",
-      "Completed 5 scientific research projects, including one project scoring 95/100",
-      "Published 1 faculty-level scientific paper (2025)"
+      "3rd Prize – 11th Student Programming Contest",
+      "Consolation Prize – 9th & 10th Student Programming Contest",
+      "Consolation Prize – 3rd Information Security Contest",
+      "Completed 5 Scientific Research Projects",
+      "Published 1 Faculty-level Research Paper (2025)"
     ],
 
     evidenceCategories: [

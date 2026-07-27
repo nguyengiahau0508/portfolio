@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="assets/styles/main.css?v=20260727" />
 </head>
 <body>
   <div class="site-bg" aria-hidden="true"></div>
@@ -34,7 +34,14 @@
 
   <main id="app"></main>
 
-  <script src="assets/scripts/data.js"></script>
-  <script src="assets/scripts/app.js"></script>
+  <div id="project-modal" class="modal-overlay" aria-hidden="true" tabindex="-1">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">✕</button>
+      <div id="modal-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="assets/scripts/data.js?v=20260727"></script>
+  <script src="assets/scripts/app.js?v=20260727"></script>
 </body>
 </html>
